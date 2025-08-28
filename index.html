@@ -1,192 +1,274 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tender Cuts - Fresh Meat Delivered</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tender Cuts — Fresh Meat Delivered</title>
+  <meta name="description" content="Tender Cuts delivers fresh, hygienic chicken, mutton, fish, and seafood. Clean cuts, quick delivery, great taste." />
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #fffaf7;
-      color: #333;
+    :root{
+      --brand:#c0392b;
+      --brand-2:#e74c3c;
+      --bg:#fffaf7;
+      --text:#2b2b2b;
+      --muted:#666;
+      --ok:#25D366;
+      --card:#ffffff;
+      --radius:14px;
+      --shadow:0 8px 18px rgba(0,0,0,.08);
     }
-    header {
-      background: #c0392b;
-      color: white;
-      padding: 20px 40px;
-      text-align: center;
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--text); background:var(--bg);
     }
-    header h1 {
-      margin: 0;
+
+    /* Header / Nav */
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      background:linear-gradient(90deg,var(--brand),var(--brand-2));
+      color:#fff; box-shadow:0 2px 8px rgba(0,0,0,.15);
     }
-    nav {
-      background: #e74c3c;
-      padding: 10px;
-      text-align: center;
+    .nav{
+      max-width:1100px; margin:auto; padding:12px 18px;
+      display:flex; align-items:center; gap:14px; justify-content:space-between;
     }
-    nav a {
-      color: white;
-      margin: 0 15px;
-      text-decoration: none;
-      font-weight: bold;
+    .brand{font-weight:800; letter-spacing:.3px}
+    .menu{display:flex; gap:16px; flex-wrap:wrap}
+    .menu a{
+      color:#fff; text-decoration:none; font-weight:600; opacity:.95
     }
-    nav a:hover {
-      text-decoration: underline;
+    .menu a:hover{opacity:1; text-decoration:underline}
+    .cta{
+      background:#fff; color:var(--brand); border:none; padding:10px 14px;
+      border-radius:999px; font-weight:700; cursor:pointer;
     }
-    section {
-      padding: 40px;
-      max-width: 1000px;
-      margin: auto;
+    .cta:hover{filter:brightness(0.95)}
+
+    /* Hero */
+    .hero{
+      max-width:1100px; margin:24px auto; padding:18px;
+      display:grid; grid-template-columns:1.1fr .9fr; gap:20px;
+      align-items:center;
     }
-    h2 {
-      color: #c0392b;
+    .hero .card{
+      background:var(--card); border-radius:var(--radius); padding:28px;
+      box-shadow:var(--shadow);
     }
-    .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
+    .hero h1{margin:0 0 10px; font-size:clamp(26px,4.2vw,44px); color:var(--brand)}
+    .hero p{margin:0 0 18px; color:var(--muted)}
+    .wh-btn{
+      display:inline-block; background:var(--ok); color:#fff;
+      padding:12px 18px; border-radius:10px; font-weight:800; text-decoration:none;
     }
-    .card {
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      padding: 20px;
-      background: #fff;
-      text-align: center;
-      box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+    .hero-img{
+      background:linear-gradient(180deg,#ffe6e2,#fff);
+      border-radius:var(--radius); min-height:260px; box-shadow:var(--shadow);
+      display:flex; align-items:center; justify-content:center; padding:10px;
     }
-    .card img {
-      max-width: 100%;
-      border-radius: 8px;
-      height: 200px;
-      object-fit: contain;
+    .hero-img img{max-width:100%; height:auto; border-radius:12px}
+
+    section{max-width:1100px; margin:34px auto; padding:0 18px}
+    h2{color:var(--brand); margin:0 0 14px}
+
+    /* Products */
+    .grid{
+      display:grid; gap:18px;
+      grid-template-columns:repeat(4,1fr);
     }
-    .order-btn {
-      display: inline-block;
-      background: #25D366;
-      color: white;
-      padding: 12px 20px;
-      margin-top: 15px;
-      border-radius: 6px;
-      font-size: 16px;
-      text-decoration: none;
-      font-weight: bold;
+    @media (max-width:1000px){ .grid{grid-template-columns:repeat(3,1fr)} }
+    @media (max-width:700px){ .grid{grid-template-columns:repeat(2,1fr)} }
+    @media (max-width:460px){ .grid{grid-template-columns:1fr} }
+
+    .card{
+      background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow);
+      overflow:hidden; display:flex; flex-direction:column;
     }
-    .order-btn:hover {
-      background: #1eb85c;
+    .card img{width:100%; height:190px; object-fit:cover}
+    .card .pad{padding:14px}
+    .price{font-weight:800; color:#111}
+    .muted{color:var(--muted); font-size:.95rem}
+    .order{
+      margin-top:auto; display:flex; gap:10px; padding:14px;
     }
-    footer {
-      background: #c0392b;
-      color: white;
-      text-align: center;
-      padding: 20px;
-      margin-top: 30px;
+    .btn{
+      flex:1; text-align:center; text-decoration:none; font-weight:700;
+      padding:10px 12px; border-radius:10px; border:1.5px solid transparent;
     }
+    .btn.wh{background:var(--ok); color:#fff}
+    .btn.ghost{background:#fff; color:var(--brand); border-color:var(--brand)}
+    .btn:hover{filter:brightness(.97)}
+
+    /* Why / Badges */
+    .badges{display:grid; gap:14px; grid-template-columns:repeat(4,1fr)}
+    @media (max-width:820px){ .badges{grid-template-columns:repeat(2,1fr)} }
+    .badge{
+      background:#fff; padding:16px; border-radius:12px; box-shadow:var(--shadow);
+      text-align:center; font-weight:700
+    }
+    .badge small{display:block; color:var(--muted); font-weight:600}
+
+    /* FAQ */
+    details{
+      background:#fff; border-radius:12px; padding:14px 16px; box-shadow:var(--shadow);
+    }
+    details+details{margin-top:10px}
+    summary{cursor:pointer; font-weight:800; color:#222}
+
+    /* Contact & Footer */
+    .contact{
+      display:grid; gap:20px; grid-template-columns:1.2fr .8fr; align-items:start;
+    }
+    @media (max-width:820px){ .contact{grid-template-columns:1fr} }
+    footer{
+      margin-top:38px; background:linear-gradient(90deg,var(--brand),var(--brand-2));
+      color:#fff; text-align:center; padding:18px;
+    }
+    .tiny{font-size:.9rem; color:#fff; opacity:.9}
   </style>
 </head>
 <body>
 
-  <!-- Header -->
-  <header>
-    <h1>Tender Cuts</h1>
-    <p>Fresh, Clean & Quality Meat Delivered to Your Doorstep</p>
-  </header>
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="nav">
+      <div class="brand">🥩 Tender Cuts</div>
+      <nav class="menu">
+        <a href="#home">Home</a>
+        <a href="#products">Products</a>
+        <a href="#why">Quality</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="cta" href="https://wa.me/919876543210?text=Hello%20Tender%20Cuts!%20I%20want%20to%20order." target="_blank" rel="noopener">Order on WhatsApp</a>
+    </div>
+  </div>
 
-  <!-- Navigation -->
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#products">Products</a>
-    <a href="#quality">Quality</a>
-    <a href="#contact">Contact</a>
-  </nav>
-
-  <!-- Home Section -->
-  <section id="home">
-    <h2>Welcome to Tender Cuts</h2>
-    <p>
-      We bring you farm-fresh, hygienically processed meat right to your home. 
-      Our mission is to provide tender, juicy, and high-quality cuts of chicken, 
-      mutton, fish, and seafood that you and your family will love.
-    </p>
-    <a href="https://wa.me/919876543210?text=Hello%20Tender%20Cuts!%20I%20want%20to%20order%20fresh%20meat." class="order-btn" target="_blank">🛒 Order Now on WhatsApp</a>
+  <!-- Hero -->
+  <section id="home" class="hero">
+    <div class="card">
+      <h1>Fresh, Clean & Hygienic Meat — Delivered Fast</h1>
+      <p>Chicken, mutton, fish & seafood — trimmed, cleaned, and packed with care. No preservatives. Just great taste.</p>
+      <a class="wh-btn" href="https://wa.me/919876543210?text=I%20want%20to%20order%20fresh%20meat%20from%20Tender%20Cuts." target="_blank" rel="noopener">🛒 Order Now on WhatsApp</a>
+    </div>
+    <div class="hero-img">
+      <!-- Optional hero image: you can replace with your own banner if you add /images/hero.png -->
+      <img src="images/chicken.png" alt="Fresh chicken cuts (representative image)" loading="lazy" />
+    </div>
   </section>
 
-  <!-- About Section -->
-  <section id="about">
-    <h2>About Us</h2>
-    <p>
-      Tender Cuts is committed to providing clean, fresh, and chemical-free meat. 
-      Our meat is sourced directly from trusted farms and processed under strict hygiene standards. 
-      Whether it's chicken, mutton, or seafood, we ensure every cut meets the highest quality.
-    </p>
-  </section>
-
-  <!-- Products Section -->
+  <!-- Products -->
   <section id="products">
     <h2>Our Products</h2>
-    <div class="products">
-      
-      <!-- Chicken -->
-      <div class="card">
-        <img src="images/chicken.png" alt="Chicken">
-        <h3>Chicken</h3>
-        <p>Fresh farm-raised chicken with no hormones or chemicals.</p>
-        <a href="https://wa.me/919876543210?text=I%20want%20to%20order%20Chicken%20from%20Tender%20Cuts." class="order-btn" target="_blank">Order Chicken</a>
-      </div>
+    <p class="muted">Transparent pricing shown as examples — update as you like.</p>
+    <div class="grid">
 
-      <!-- Mutton -->
-      <div class="card">
-        <img src="images/mutton.png" alt="Mutton">
-        <h3>Mutton</h3>
-        <p>Tender, juicy goat meat, perfect for curries and grills.</p>
-        <a href="https://wa.me/919876543210?text=I%20want%20to%20order%20Mutton%20from%20Tender%20Cuts." class="order-btn" target="_blank">Order Mutton</a>
-      </div>
+      <article class="card">
+        <img src="images/chicken.png" alt="Chicken" loading="lazy" />
+        <div class="pad">
+          <h3>Chicken</h3>
+          <p class="muted">Farm-fresh, tender cuts. Skinless options available.</p>
+          <div class="price">₹199 / 500g</div>
+        </div>
+        <div class="order">
+          <a class="btn wh" href="https://wa.me/919876543210?text=Order%3A%20Chicken%20-%20500g" target="_blank" rel="noopener">Order</a>
+          <a class="btn ghost" href="#contact">Enquire</a>
+        </div>
+      </article>
 
-      <!-- Fish -->
-      <div class="card">
-        <img src="images/fish.png" alt="Fish">
-        <h3>Fish</h3>
-        <p>Freshwater & seawater fish varieties, cleaned and ready to cook.</p>
-        <a href="https://wa.me/919876543210?text=I%20want%20to%20order%20Fish%20from%20Tender%20Cuts." class="order-btn" target="_blank">Order Fish</a>
-      </div>
+      <article class="card">
+        <img src="images/mutton.png" alt="Mutton" loading="lazy" />
+        <div class="pad">
+          <h3>Mutton</h3>
+          <p class="muted">Young goat meat, perfect for curry or fry.</p>
+          <div class="price">₹549 / 500g</div>
+        </div>
+        <div class="order">
+          <a class="btn wh" href="https://wa.me/919876543210?text=Order%3A%20Mutton%20-%20500g" target="_blank" rel="noopener">Order</a>
+          <a class="btn ghost" href="#contact">Enquire</a>
+        </div>
+      </article>
 
-      <!-- Seafood -->
-      <div class="card">
-        <img src="images/seafoods.png" alt="Seafood">
-        <h3>Seafood</h3>
-        <p>Delicious prawns, crabs, and other seafood freshly sourced.</p>
-        <a href="https://wa.me/919876543210?text=I%20want%20to%20order%20Seafood%20from%20Tender%20Cuts." class="order-btn" target="_blank">Order Seafood</a>
-      </div>
+      <article class="card">
+        <img src="images/fish.png" alt="Fish" loading="lazy" />
+        <div class="pad">
+          <h3>Fish</h3>
+          <p class="muted">Freshwater & seawater varieties, cleaned & gutted.</p>
+          <div class="price">₹299 / 500g</div>
+        </div>
+        <div class="order">
+          <a class="btn wh" href="https://wa.me/919876543210?text=Order%3A%20Fish%20-%20500g" target="_blank" rel="noopener">Order</a>
+          <a class="btn ghost" href="#contact">Enquire</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <img src="images/seafoods.png" alt="Seafood (prawns/crab)" loading="lazy" />
+        <div class="pad">
+          <h3>Seafood</h3>
+          <p class="muted">Prawns, crab & more. De-veined & cleaned options.</p>
+          <div class="price">₹449 / 500g</div>
+        </div>
+        <div class="order">
+          <a class="btn wh" href="https://wa.me/919876543210?text=Order%3A%20Seafood%20-%20500g" target="_blank" rel="noopener">Order</a>
+          <a class="btn ghost" href="#contact">Enquire</a>
+        </div>
+      </article>
 
     </div>
   </section>
 
-  <!-- Quality Section -->
-  <section id="quality">
-    <h2>Why Choose Us?</h2>
-    <ul>
-      <li>✅ 100% Fresh & Hygienic</li>
-      <li>✅ No Preservatives or Chemicals</li>
-      <li>✅ Doorstep Delivery</li>
-      <li>✅ Wide Range of Meat & Seafood</li>
-      <li>✅ Trusted by Thousands of Families</li>
-    </ul>
+  <!-- Why Choose Us -->
+  <section id="why">
+    <h2>Why Choose Tender Cuts?</h2>
+    <div class="badges">
+      <div class="badge">🧼 Hygienic Processing <small>Handled in clean facilities</small></div>
+      <div class="badge">❄️ Cold Chain Fresh <small>Chilled, never stale</small></div>
+      <div class="badge">🪙 Honest Weights <small>What you order is what you get</small></div>
+      <div class="badge">⏱ Fast Delivery <small>Packed & delivered quickly</small></div>
+    </div>
   </section>
 
-  <!-- Contact Section -->
-  <section id="contact">
-    <h2>Contact Us</h2>
-    <p>Email: support@tendercuts.com</p>
-    <p>Phone: +91 98765 43210</p>
-    <p>Address: 123 Fresh Street, Chennai, India</p>
+  <!-- FAQ -->
+  <section id="faq">
+    <h2>FAQs</h2>
+    <details>
+      <summary>Do you add preservatives?</summary>
+      <p>No. We deliver fresh meat with proper chilling and hygiene — no artificial preservatives.</p>
+    </details>
+    <details>
+      <summary>Can I request custom cuts?</summary>
+      <p>Yes! Tell us your cut preference on WhatsApp before placing the order.</p>
+    </details>
+    <details>
+      <summary>What areas do you deliver to?</summary>
+      <p>We currently deliver within city limits. Message us your PIN code to confirm.</p>
+    </details>
   </section>
 
-  <!-- Footer -->
+  <!-- Contact -->
+  <section id="contact" class="contact">
+    <div class="card" style="padding:18px">
+      <h2>Contact Us</h2>
+      <p class="muted">Questions or bulk orders? We’re happy to help.</p>
+      <p><strong>Phone:</strong> +91 98765 43210</p>
+      <p><strong>Email:</strong> support@tendercuts.com</p>
+      <p><strong>Address:</strong> 123 Fresh Street, Chennai, India</p>
+      <p>
+        <a class="wh-btn" href="https://wa.me/919876543210?text=Hello%20Tender%20Cuts!%20I%20have%20a%20question." target="_blank" rel="noopener">Chat on WhatsApp</a>
+      </p>
+    </div>
+    <div class="card" style="padding:18px">
+      <h3>Business Hours</h3>
+      <p class="muted">Mon–Sun: 7:00 AM – 9:00 PM</p>
+      <h3>Safety Note</h3>
+      <p class="muted">Keep refrigerated at 0–4°C. Cook thoroughly before eating.</p>
+    </div>
+  </section>
+
   <footer>
-    <p>&copy; 2025 Tender Cuts. All rights reserved.</p>
+    <div class="tiny">© 2025 Tender Cuts • Fresh Meat Delivered</div>
   </footer>
-
 </body>
 </html>
