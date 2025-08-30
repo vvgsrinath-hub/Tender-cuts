@@ -50,6 +50,10 @@
       background: #555;
       margin-left: 10px;
     }
+    .clear-btn {
+      background: #000;
+      margin-top: 15px;
+    }
   </style>
 </head>
 <body>
@@ -91,10 +95,11 @@
 
   <!-- Cart Section -->
   <div class="cart">
-    <h2>Your Cart</h2>
+    <h2>Your Cart 🛒 (<span id="cart-count">0</span> items)</h2>
     <ul id="cartList"></ul>
     <h3>Total: ₹<span id="total">0</span></h3>
     <button class="btn" onclick="checkout()">Checkout via WhatsApp</button>
+    <button class="btn clear-btn" onclick="clearCart()">Clear Cart</button>
   </div>
 
   <script>
@@ -102,6 +107,14 @@
 
     function saveCart() {
       localStorage.setItem("cart", JSON.stringify(cart));
+    }
+
+    function updateCartCount() {
+      let count = cart.reduce((sum, item) => sum + item.quantity, 0);
+      document.getElementById("cart-count").textContent = count;
+      // also update homepage cart count if exists
+      let homeCart = document.getElementById("cart-count-home");
+      if(homeCart) homeCart.textContent = count;
     }
 
     function addToCart(product, price, qtyId) {
@@ -122,6 +135,12 @@
       renderCart();
     }
 
+    function clearCart() {
+      cart = [];
+      saveCart();
+      renderCart();
+    }
+
     function renderCart() {
       let cartList = document.getElementById("cartList");
       cartList.innerHTML = "";
@@ -134,6 +153,7 @@
         total += item.price * item.quantity;
       });
       document.getElementById("total").innerText = total;
+      updateCartCount();
     }
 
     function checkout() {
