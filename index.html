@@ -175,12 +175,27 @@
 
   <!-- Navigation -->
   <nav>
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#products">Products</a>
-    <a href="#quality">Quality</a>
-    <a href="#contact">Contact</a>
-  </nav>
+  <a href="#home">Home</a>
+  <a href="#about">About</a>
+  <a href="#products">Products</a>
+  <a href="#quality">Quality</a>
+  <a href="#contact">Contact</a>
+
+  <!-- Cart Button -->
+  <a href="order.html" id="cart-link" style="position: relative;">
+    🛒 Cart <span id="cart-count" style="
+      background: #f1c40f;
+      color: black;
+      font-weight: bold;
+      padding: 2px 6px;
+      border-radius: 50%;
+      font-size: 14px;
+      position: absolute;
+      top: -8px;
+      right: -25px;
+    ">0</span>
+  </a>
+</nav>
 
   <!-- Home / Welcome Section -->
   <section id="home">
@@ -276,6 +291,22 @@
     <p>&copy; 2025 Tender Cuts. All rights reserved.</p>
   </footer>
 
+<script>
+  // Show cart count from localStorage
+  function updateCartCount() {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let count = cart.reduce((sum, item) => sum + item.quantity, 0);
+    document.getElementById("cart-count").textContent = count;
+  }
+
+  // Run on page load
+  updateCartCount();
+
+  // Also update when storage changes (multiple tabs support)
+  window.addEventListener("storage", updateCartCount);
+</script>
+
+  
   <!-- Slideshow Script -->
   <script>
     let slideIndex = 0;
