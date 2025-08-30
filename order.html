@@ -3,210 +3,154 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Order - Tender Cuts</title>
+  <title>Tender Cuts - Order</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #fff5f5, #fffaf0);
+      background: #fffaf0;
       margin: 0;
-      padding: 0;
-      color: #333;
-    }
-
-    header {
-      background: linear-gradient(90deg, #c0392b, #e74c3c);
-      color: white;
-      text-align: center;
       padding: 20px;
     }
-    header h1 {
-      margin: 0;
-    }
-
-    section {
-      max-width: 900px;
-      margin: 30px auto;
-      padding: 20px;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
-
-    h2 {
+    h1 {
       text-align: center;
       color: #c0392b;
-      margin-bottom: 20px;
     }
-
-    .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-    }
-
-    .card {
-      background: #ffe6e6;
+    .product {
+      background: white;
       padding: 15px;
+      margin: 10px;
       border-radius: 10px;
-      text-align: center;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-    }
-    .card img {
-      width: 100%;
-      height: 150px;
-      object-fit: contain;
-      margin-bottom: 10px;
-    }
-    .price {
-      font-weight: bold;
-      color: #27ae60;
-      margin: 8px 0;
-    }
-    .btn {
-      display: inline-block;
-      background: #c0392b;
-      color: white;
-      padding: 8px 12px;
-      border-radius: 6px;
-      text-decoration: none;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    .btn:hover {
-      background: #a93226;
-    }
-
-    /* Cart */
-    #cart {
-      margin-top: 30px;
-      padding: 15px;
-      background: #fdf2f2;
-      border: 2px solid #c0392b;
-      border-radius: 10px;
-    }
-    #cart ul {
-      list-style: none;
-      padding: 0;
-    }
-    #cart li {
-      margin: 8px 0;
-      padding: 6px;
-      background: #fff;
-      border-radius: 6px;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.1);
       display: flex;
       justify-content: space-between;
+      align-items: center;
     }
-    #total {
-      font-size: 18px;
-      font-weight: bold;
-      margin-top: 10px;
-      text-align: right;
-      color: #27ae60;
+    .cart {
+      margin-top: 30px;
+      padding: 20px;
+      background: #f8d7da;
+      border-radius: 10px;
     }
-
-    #whatsapp-btn {
-      display: block;
-      margin: 20px auto 0;
-      padding: 12px 18px;
-      font-size: 16px;
-      background: #25D366;
+    .btn {
+      background: #c0392b;
       color: white;
       border: none;
-      border-radius: 8px;
+      padding: 8px 15px;
+      border-radius: 5px;
       cursor: pointer;
-      text-align: center;
-      transition: 0.3s;
     }
-    #whatsapp-btn:hover {
-      background: #1ebc57;
+    .btn:hover {
+      background: #e74c3c;
+    }
+    input[type="number"] {
+      width: 60px;
+      padding: 5px;
+    }
+    .remove-btn {
+      background: #555;
+      margin-left: 10px;
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>🛒 Tender Cuts - Order Page</h1>
-    <p>Select your products and add them to cart</p>
-  </header>
+  <h1>Order Your Fresh Meat</h1>
 
-  <section>
-    <h2>Our Products</h2>
-    <div class="products">
-      <div class="card">
-        <img src="images/chicken.png" alt="Chicken">
-        <h3>Chicken</h3>
-        <p class="price">₹199</p>
-        <button class="btn" onclick="addToCart('Chicken',199)">Add to Cart</button>
-      </div>
-
-      <div class="card">
-        <img src="images/mutton.png" alt="Mutton">
-        <h3>Mutton</h3>
-        <p class="price">₹549</p>
-        <button class="btn" onclick="addToCart('Mutton',549)">Add to Cart</button>
-      </div>
-
-      <div class="card">
-        <img src="images/fish.png" alt="Fish">
-        <h3>Fish</h3>
-        <p class="price">₹299</p>
-        <button class="btn" onclick="addToCart('Fish',299)">Add to Cart</button>
-      </div>
-
-      <div class="card">
-        <img src="images/seafoods.png" alt="Seafood">
-        <h3>Seafood</h3>
-        <p class="price">₹399</p>
-        <button class="btn" onclick="addToCart('Seafood',399)">Add to Cart</button>
-      </div>
+  <!-- Product List -->
+  <div class="product">
+    <span>🐔 Chicken - ₹199/kg</span>
+    <div>
+      <input type="number" min="1" value="1" id="chickenQty">
+      <button class="btn" onclick="addToCart('Chicken',199,'chickenQty')">Add</button>
     </div>
-  </section>
+  </div>
+
+  <div class="product">
+    <span>🐐 Mutton - ₹549/kg</span>
+    <div>
+      <input type="number" min="1" value="1" id="muttonQty">
+      <button class="btn" onclick="addToCart('Mutton',549,'muttonQty')">Add</button>
+    </div>
+  </div>
+
+  <div class="product">
+    <span>🐟 Fish - ₹299/kg</span>
+    <div>
+      <input type="number" min="1" value="1" id="fishQty">
+      <button class="btn" onclick="addToCart('Fish',299,'fishQty')">Add</button>
+    </div>
+  </div>
+
+  <div class="product">
+    <span>🦐 Seafood - ₹399/kg</span>
+    <div>
+      <input type="number" min="1" value="1" id="seafoodQty">
+      <button class="btn" onclick="addToCart('Seafood',399,'seafoodQty')">Add</button>
+    </div>
+  </div>
 
   <!-- Cart Section -->
-  <section id="cart">
-    <h2>🛍️ Your Cart</h2>
-    <ul id="cart-items"></ul>
-    <div id="total">Total: ₹0</div>
-    <button id="whatsapp-btn" onclick="sendToWhatsApp()">📲 Send Order on WhatsApp</button>
-  </section>
+  <div class="cart">
+    <h2>Your Cart</h2>
+    <ul id="cartList"></ul>
+    <h3>Total: ₹<span id="total">0</span></h3>
+    <button class="btn" onclick="checkout()">Checkout via WhatsApp</button>
+  </div>
 
   <script>
-    let cart = [];
-    function addToCart(product, price) {
-      cart.push({product, price});
-      updateCart();
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    function saveCart() {
+      localStorage.setItem("cart", JSON.stringify(cart));
     }
 
-    function updateCart() {
-      let cartList = document.getElementById("cart-items");
+    function addToCart(product, price, qtyId) {
+      let quantity = parseInt(document.getElementById(qtyId).value);
+      let existing = cart.find(item => item.product === product);
+      if(existing){
+        existing.quantity += quantity;
+      } else {
+        cart.push({ product, price, quantity });
+      }
+      saveCart();
+      renderCart();
+    }
+
+    function removeFromCart(product) {
+      cart = cart.filter(item => item.product !== product);
+      saveCart();
+      renderCart();
+    }
+
+    function renderCart() {
+      let cartList = document.getElementById("cartList");
       cartList.innerHTML = "";
       let total = 0;
       cart.forEach(item => {
         let li = document.createElement("li");
-        li.textContent = item.product + " - ₹" + item.price;
+        li.innerHTML = `${item.product} - ₹${item.price} x ${item.quantity} = ₹${item.price * item.quantity} 
+          <button class="btn remove-btn" onclick="removeFromCart('${item.product}')">Remove</button>`;
         cartList.appendChild(li);
-        total += item.price;
+        total += item.price * item.quantity;
       });
-      document.getElementById("total").textContent = "Total: ₹" + total;
+      document.getElementById("total").innerText = total;
     }
 
-    function sendToWhatsApp() {
-      if (cart.length === 0) {
+    function checkout() {
+      if(cart.length === 0) {
         alert("Your cart is empty!");
         return;
       }
-      let message = "Hello Tender Cuts! I want to order:\n\n";
-      let total = 0;
+      let message = "Hello Tender Cuts! I want to order:\n";
       cart.forEach(item => {
-        message += "- " + item.product + " : ₹" + item.price + "\n";
-        total += item.price;
+        message += `${item.product} - ${item.quantity}kg = ₹${item.price * item.quantity}\n`;
       });
-      message += "\nTotal: ₹" + total;
-
-      let phone = "919876543210"; // <-- replace with your WhatsApp number
-      let url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
-      window.open(url, "_blank");
+      message += `Total = ₹${document.getElementById("total").innerText}`;
+      window.open(`https://wa.me/919876543210?text=${encodeURIComponent(message)}`, "_blank");
     }
+
+    // Load cart on page load
+    renderCart();
   </script>
 
 </body>
