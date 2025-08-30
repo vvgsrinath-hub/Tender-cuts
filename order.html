@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order - Tender Cuts</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #fff8f8;
+      color: #333;
+    }
+
+    header {
+      background: #e63946;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 20px;
+    }
+
+    .products {
+      flex: 2;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .product {
+      background: white;
+      border-radius: 12px;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .product img {
+      max-width: 100%;
+      border-radius: 10px;
+    }
+
+    .product h3 {
+      margin: 10px 0 5px;
+    }
+
+    .product p {
+      margin: 5px 0;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #e63946;
+      color: white;
+      padding: 8px 15px;
+      margin-top: 8px;
+      border-radius: 25px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #ff4757;
+    }
+
+    .cart {
+      flex: 1;
+      background: #fff;
+      padding: 20px;
+      margin-left: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .cart h2 {
+      margin-top: 0;
+    }
+
+    .cart-items {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .cart-items li {
+      margin: 8px 0;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 5px;
+    }
+
+    .total {
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 15px;
+    }
+
+    .checkout-btn {
+      display: inline-block;
+      background: green;
+      color: white;
+      padding: 10px 20px;
+      margin-top: 15px;
+      border-radius: 30px;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Order Your Fresh Meat</h1>
+  </header>
+
+  <div class="container">
+    <!-- Products Section -->
+    <div class="products">
+      <div class="product">
+        <img src="https://images.unsplash.com/photo-1606756790138-5c8b73b4a42e" alt="Chicken">
+        <h3>Fresh Chicken</h3>
+        <p>₹220 / Kg</p>
+        <button class="btn" onclick="addToCart('Fresh Chicken', 220)">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141" alt="Mutton">
+        <h3>Farm Mutton</h3>
+        <p>₹750 / Kg</p>
+        <button class="btn" onclick="addToCart('Farm Mutton', 750)">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="https://images.unsplash.com/photo-1604908177522-040f2373dbe2" alt="Fish">
+        <h3>Fresh Fish</h3>
+        <p>₹350 / Kg</p>
+        <button class="btn" onclick="addToCart('Fresh Fish', 350)">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- Cart Section -->
+    <div class="cart">
+      <h2>🛒 Your Cart</h2>
+      <ul class="cart-items" id="cart-items"></ul>
+      <p class="total">Total: ₹<span id="total">0</span></p>
+      <a href="#" class="checkout-btn">Checkout</a>
+    </div>
+  </div>
+
+  <script>
+    let cart = [];
+    let total = 0;
+
+    function addToCart(product, price) {
+      cart.push({ product, price });
+      total += price;
+      updateCart();
+    }
+
+    function updateCart() {
+      const cartList = document.getElementById('cart-items');
+      cartList.innerHTML = '';
+      cart.forEach(item => {
+        let li = document.createElement('li');
+        li.textContent = `${item.product} - ₹${item.price}`;
+        cartList.appendChild(li);
+      });
+      document.getElementById('total').textContent = total;
+    }
+  </script>
+</body>
+</html>
